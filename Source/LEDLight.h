@@ -29,8 +29,15 @@ public:
 
     void paint (juce::Graphics& g) override
     {
+        int minimumDimension = juce::jmin(getWidth(),getHeight());
+        float outerCircleRadius = minimumDimension / 7;
+        float circleRadius = minimumDimension / 8;
+        
+        g.setColour(juce::Colours::black);
+        g.fillEllipse((getWidth()/2) - outerCircleRadius, (getHeight()/2) - outerCircleRadius, 2*outerCircleRadius, 2*outerCircleRadius);
+        
         g.setColour(juce::Colours::green);
-        g.fillEllipse(getX(), getY(), getWidth(), getHeight());
+        g.fillEllipse((getWidth()/2) - circleRadius, (getHeight()/2) - circleRadius, 2*circleRadius, 2*circleRadius);
     }
 
     void resized() override

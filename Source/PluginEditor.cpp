@@ -40,13 +40,16 @@ void PhaseTriggerAudioProcessorEditor::resized()
 {
     auto bounds = getLocalBounds();
     auto totalWidth = bounds.getWidth();
-    triggerBounds = bounds.removeFromLeft(totalWidth * 0.05f);
-    switchViewBounds = bounds.removeFromLeft(totalWidth * 0.75f);
+    triggerBounds = bounds.removeFromLeft(totalWidth * 0.15f);
+    currentViewBounds = bounds.removeFromLeft(totalWidth * 0.55f);
+    switchViewButtonBounds = bounds.removeFromLeft(totalWidth * 0.10f);
     outputSettingsBounds = bounds;
     
     triggerComponent.setBounds(triggerBounds);
-    switchViewComponent.setBounds(switchViewBounds);
+    switchViewComponent.setBounds(switchViewButtonBounds);
     outputSettingsComponent.setBounds(outputSettingsBounds);
+    envelopeView.setBounds(currentViewBounds);
+    phaserView.setBounds(currentViewBounds);
     
     
 }

@@ -20,7 +20,8 @@ class TriggerComponent : public juce::Component
 {
 public:
     TriggerComponent() : onOffButton("On / Off"),
-                                textLabel("Trigger")
+                         textLabel("Trigger","Trigger"),
+                         ledLight()
     {
         
         addAndMakeVisible(textLabel);
@@ -29,18 +30,23 @@ public:
     }
     
     void paint(juce::Graphics& g) override{
-        g.drawText("I am the Trigger",0,0,100,100, juce::Justification(1));
+        g.setColour(juce::Colours::grey);
+        g.fillRect(getLocalBounds());
     }
 
     void resized() override{
         auto bounds = getLocalBounds();
-        juce::FlexBox flexbox(juce::FlexBox::Direction::column, juce::FlexBox::Wrap::noWrap, juce::FlexBox::AlignContent::spaceBetween, juce::FlexBox::AlignItems::center, juce::FlexBox::JustifyContent::spaceBetween);
+        auto labelBounds = bounds.removeFromTop(bounds.getHeight() * 0.2);
+        auto ledLightBounds = bounds.removeFromTop(bounds.getHeight() * 0.5);
+        
+        textLabel.setBounds(labelBounds);
+        ledLight.setBounds(ledLightBounds);
+        
+        int buttonMarginY = bounds.getHeight() * 0.3;
+        bounds.removeFromTop(buttonMarginY); bounds.removeFromBottom(buttonMarginY);
+        onOffButton.setBounds(bounds);
         
         
-        flexbox.items.add(textLabel);
-        flexbox.items.add(ledLight);
-        flexbox.items.add(onOffButton);
-        flexbox.performLayout(bounds);
     }
     
 private:
@@ -53,14 +59,24 @@ class SwitchViewComponent : public juce::Component
 {
     
     void paint(juce::Graphics& g) override{
-        g.drawText("Switch", getX(), getY(), getWidth(), getHeight(), juce::Justification(8));
+        
     }
+    
+    void setCurrentView(juce::Component* newView){
+        
+    }
+    
     void resized() override{
         auto bounds = getLocalBounds();
     }
     
+    private:
+    juce::Component* currentView;
+    
     
 };
+
+
 
 class OutputSettingsComponent : public juce::Component
 {
@@ -94,8 +110,8 @@ private:
     
     //Bounds
     juce::Rectangle<int> triggerBounds;
-    juce::Rectangle<int> viewBounds;
-    juce::Rectangle<int> switchViewBounds;
+    juce::Rectangle<int> currentViewBounds;
+    juce::Rectangle<int> switchViewButtonBounds;
     juce::Rectangle<int> outputSettingsBounds;
     
     //Stateful variables

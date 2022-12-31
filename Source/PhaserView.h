@@ -12,16 +12,63 @@
 
 #include <JuceHeader.h>
 
-//==============================================================================
-/*
-*/
+struct TitledLabel : public juce::Component
+{
+    TitledLabel(juce::Label* label, juce::String title)
+    {
+        valueLabel = label;
+        valueTitle = title;
+        
+        valueLabel->setEditable(true);
+        valueLabel->setJustificationType(juce::Justification(9));
+        //make the text for the valuelabel align top left, just like when we click on the label to edit it
+        
+        addAndMakeVisible(valueLabel);
+    }
+    void paint(juce::Graphics& g) override {
+        g.setColour(juce::Colours::black);
+        g.drawRect(getLocalBounds());
+        g.setFont(titleFontSize);
+        g.setColour(juce::Colours::white);
+        //get the size of the font 
+
+        g.drawText(valueTitle, 0, 0, getWidth(), getHeight(), juce::Justification(9));
+        
+        
+    }
+    void resized() override {
+        auto bounds = getLocalBounds();
+        bounds.removeFromTop(titleFontSize);
+        valueLabel->setBounds(bounds);
+        
+    }
+    
+    private:
+        juce::Label* valueLabel;
+        juce::String valueTitle;
+        float titleFontSize = 20.0f;
+};
+
+
+
 class PhaserView  : public juce::Component
 {
 public:
-    PhaserView()
+    PhaserView() :  notchesLabel("Notches","Notches"),
+                    centerLabel("Center","Center"),
+                    spreadLabel("Spread","Spread"),
+                    blendLabel("Blend","Blend"),
+                    notchesTitledLabel(&notchesLabel, "Notches"),
+                    centerTitledLabel(&centerLabel, "Center"),
+                    spreadTitledLabel(&spreadLabel, "Spread"),
+                    blendTitledLabel(&blendLabel, "Blend")
     {
-        // In your constructor, you should add any child components, and
-        // initialise any special settings that your component needs.
+        for(TitledLabel* titledLabel : getTitledLabels()){
+            //label.setFont();
+            addAndMakeVisible(titledLabel);
+        }
+        
+        
 
     }
 
@@ -31,33 +78,46 @@ public:
 
     void paint (juce::Graphics& g) override
     {
-        /* This demo code just fills the component's background and
-           draws some placeholder text to get you started.
 
-           You should replace everything in this method with your own
-           drawing code..
-        */
-
-        g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));   // clear the background
-
-        g.setColour (juce::Colours::grey);
-        g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
-
-        g.setColour (juce::Colours::white);
-        g.setFont (14.0f);
-        g.drawText ("PhaserView", getLocalBounds(),
-                    juce::Justification::centred, true);   // draw some placeholder text
     }
 
     void resized() override
     {
-        // This method is where you should set the bounds of any child
-        // components that your component contains..
-
+        auto bounds = getLocalBounds();
+        visualBounds = bounds.removeFromTop(bounds.getHeight() * 0.6);
+        labelSettingsBounds = bounds;
+        
+        notchesTitledLabel.setBounds(labelSettingsBounds.removeFromLeft(labelSettingsBounds.getWidth() * 0.25));
+        centerTitledLabel.setBounds(labelSettingsBounds.removeFromLeft(labelSettingsBounds.getWidth() * 0.3333));
+        spreadTitledLabel.setBounds(labelSettingsBounds.removeFromLeft(labelSettingsBounds.getWidth() * 0.5));
+        blendTitledLabel.setBounds(labelSettingsBounds);
     }
 
 private:
-    juce::Rectangle<float> VisualBounds;
-    juce::Rectangle<float> LabelSettingsBounds;
+    juce::Rectangle<int> visualBounds;
+    juce::Rectangle<int> labelSettingsBounds;
+    
+    juce::Label notchesLabel;
+    juce::Label centerLabel;
+    juce::Label spreadLabel;
+    juce::Label blendLabel;
+    
+    TitledLabel notchesTitledLabel;
+    TitledLabel centerTitledLabel;
+    TitledLabel spreadTitledLabel;
+    TitledLabel blendTitledLabel;
+    
+    
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PhaserView)
+    
+    std::vector<TitledLabel*> getTitledLabels(){
+        return {
+            &notchesTitledLabel,
+            &centerTitledLabel,
+            &spreadTitledLabel,
+            &blendTitledLabel
+        };
+    }
+
 };

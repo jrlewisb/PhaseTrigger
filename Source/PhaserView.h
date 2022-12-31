@@ -84,7 +84,7 @@ public:
     void resized() override
     {
         auto bounds = getLocalBounds();
-        visualBounds = bounds.removeFromTop(bounds.getHeight() * 0.6);
+        visualBounds = bounds.removeFromTop(bounds.getHeight() * 0.8);
         labelSettingsBounds = bounds;
         
         notchesTitledLabel.setBounds(labelSettingsBounds.removeFromLeft(labelSettingsBounds.getWidth() * 0.25));

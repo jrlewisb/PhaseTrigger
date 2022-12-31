@@ -23,7 +23,7 @@ public:
                          textLabel("Trigger","Trigger"),
                          ledLight()
     {
-        
+        textLabel.setJustificationType(juce::Justification(12));
         addAndMakeVisible(textLabel);
         addAndMakeVisible(ledLight);
         addAndMakeVisible(onOffButton);

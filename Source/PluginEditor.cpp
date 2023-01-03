@@ -6,8 +6,8 @@
   ==============================================================================
 */
 
-#include "PluginProcessor.h"
-#include "PluginEditor.h"
+#include "./PluginProcessor.h"
+#include "./PluginEditor.h"
 
 //==============================================================================
 PhaseTriggerAudioProcessorEditor::PhaseTriggerAudioProcessorEditor (PhaseTriggerAudioProcessor& p)
@@ -17,8 +17,7 @@ PhaseTriggerAudioProcessorEditor::PhaseTriggerAudioProcessorEditor (PhaseTrigger
     currentView = &phaserView;
     addAndMakeVisible(&triggerComponent);
     addAndMakeVisible(currentView);
-    addAndMakeVisible(switchViewComponent);
-    addAndMakeVisible(outputSettingsComponent);
+    //addAndMakeVisible(outputSettingsComponent);
     
 }
 
@@ -39,17 +38,27 @@ void PhaseTriggerAudioProcessorEditor::paint (juce::Graphics& g)
 void PhaseTriggerAudioProcessorEditor::resized()
 {
     auto bounds = getLocalBounds();
-    auto totalWidth = bounds.getWidth();
-    triggerBounds = bounds.removeFromLeft(totalWidth * 0.15f);
-    currentViewBounds = bounds.removeFromLeft(totalWidth * 0.55f);
-    switchViewButtonBounds = bounds.removeFromLeft(totalWidth * 0.10f);
-    outputSettingsBounds = bounds;
-    
+    auto topBounds = bounds.removeFromTop(bounds.getHeight() * 0.15);
+    auto midBounds = bounds.removeFromTop(bounds.getHeight() * 0.7);
+    auto bottomBounds = bounds;
+
+    //top bar
+    topMenuBar.setBounds(topBounds);
+
+    //these will be set visible / invisible based on which of the buttons are pressed in the tab component
+    phaserView.setBounds(midBounds);
+    envelopeView.setBounds(midBounds);
+    //always visible
+  
+    //bottom layout
+    auto triggerBounds = bottomBounds.removeFromLeft(bottomBounds.getWidth() * 0.2);
     triggerComponent.setBounds(triggerBounds);
-    switchViewComponent.setBounds(switchViewButtonBounds);
-    outputSettingsComponent.setBounds(outputSettingsBounds);
-    envelopeView.setBounds(currentViewBounds);
-    phaserView.setBounds(currentViewBounds);
+
+    outputSettingsComponent.setBounds(bottomBounds);
+
+
+
+
     
     
 }

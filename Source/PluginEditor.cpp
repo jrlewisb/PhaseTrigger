@@ -11,20 +11,25 @@
 
 //==============================================================================
 PhaseTriggerAudioProcessorEditor::PhaseTriggerAudioProcessorEditor (PhaseTriggerAudioProcessor& p)
-    : AudioProcessorEditor (&p), audioProcessor (p)
+    : AudioProcessorEditor (&p), audioProcessor (p), settingsPopupMenu()
 {
     setLookAndFeel(&customLNF);
     setSize (500, 250);
     currentView = &envelopeView;
+    settingsPopupMenu.addItem(juce::PopupMenu::Item("New").setID(1));
+    settingsPopupMenu.addItem(juce::PopupMenu::Item("Open").setID(2));
+    settingsPopupMenu.addItem(juce::PopupMenu::Item("Save").setID(3));
 
     //assign functionality
     topMenuBar.getPhaserButton().addListener(this);
     topMenuBar.getEnvelopeButton().addListener(this);
+    topMenuBar.getSettingsButton().addListener(this);
     
     addAndMakeVisible(topMenuBar);
     addAndMakeVisible(&triggerComponent);
     addAndMakeVisible(currentView);
     addAndMakeVisible(outputSettingsComponent);
+
     
 }
 
@@ -32,7 +37,23 @@ PhaseTriggerAudioProcessorEditor::~PhaseTriggerAudioProcessorEditor()
 {
   topMenuBar.getPhaserButton().removeListener(this);
   topMenuBar.getEnvelopeButton().removeListener(this);
+  topMenuBar.getSettingsButton().removeListener(this);
 
+}
+
+void PhaseTriggerAudioProcessorEditor::settingsSelectionHandler(int result)
+{
+    switch (result)
+    {
+    case 1:
+        break;
+    case 2:
+        break;
+    case 3:
+        break;
+    default:
+        break;
+    }
 }
 
 void PhaseTriggerAudioProcessorEditor::buttonClicked(juce::Button* button)
@@ -40,7 +61,9 @@ void PhaseTriggerAudioProcessorEditor::buttonClicked(juce::Button* button)
     if (button == &topMenuBar.getPhaserButton())
     {
         topMenuBar.getPhaserButton().setButtonColour(MyColours::SELECTED_VIEW);
+        topMenuBar.getPhaserButton().setTextColour(MyColours::SELECTED_VIEW_TEXT);
         topMenuBar.getEnvelopeButton().setButtonColour(MyColours::VIEW);
+        topMenuBar.getEnvelopeButton().setTextColour(MyColours::VIEW_TEXT);
         //currentView->setVisible(false);
         currentView = &phaserView;
         currentView->setVisible(true);
@@ -48,13 +71,18 @@ void PhaseTriggerAudioProcessorEditor::buttonClicked(juce::Button* button)
     else if (button == &topMenuBar.getEnvelopeButton())
     {
         topMenuBar.getPhaserButton().setButtonColour(MyColours::VIEW);
+        topMenuBar.getPhaserButton().setTextColour(MyColours::VIEW_TEXT);
         topMenuBar.getEnvelopeButton().setButtonColour(MyColours::SELECTED_VIEW);
+        topMenuBar.getEnvelopeButton().setTextColour(MyColours::SELECTED_VIEW_TEXT);
         //currentView->setVisible(false);
         currentView = &envelopeView;
         currentView->setVisible(true);
+    }else if( button == &topMenuBar.getSettingsButton())
+    {
+        settingsPopupMenu.showMenuAsync(juce::PopupMenu::Options().withTargetComponent(&topMenuBar.getSettingsButton()),
+            [&](int result){settingsSelectionHandler(result);});
     }
 }
-
 //==============================================================================
 void PhaseTriggerAudioProcessorEditor::paint (juce::Graphics& g)
 {

@@ -33,6 +33,9 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
+    //custom
+    void settingsSelectionHandler(int result);
+
     //virtuals to override
     void buttonClicked(juce::Button* button) override;
 
@@ -51,6 +54,7 @@ private:
     OutputSettingsComponent outputSettingsComponent;
 
     //Simple Components
+    juce::PopupMenu settingsPopupMenu;
     
 
     //OutputSettingsComponent outputSettingsComponent;

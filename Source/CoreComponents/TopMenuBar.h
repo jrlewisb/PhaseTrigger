@@ -59,6 +59,10 @@ public:
         return envelopeButton;
     }
 
+    MenuButtonComponent& getSettingsButton() {
+        return topSettings;
+    }
+
 
 
     void resized() override {

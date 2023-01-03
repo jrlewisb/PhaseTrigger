@@ -16,7 +16,7 @@ public:
         g.fillRect(getLocalBounds());
         g.setColour(juce::Colours::red);
         g.setFont(20.0f);
-        g.drawText(getButtonText(), getLocalBounds(), juce::Justification(9));
+        g.drawText(getButtonText(), getLocalBounds(), juce::Justification(36));
     }
 
 //    void setButtonFunction(void(*funcToSet)(const juce::MouseEvent& event, MenuButtonComponent* mbc)){
@@ -25,6 +25,11 @@ public:
 
     void setButtonColour(juce::Colour colourToSet){
         this->buttonColour = colourToSet;
+        repaint();
+    }
+    
+    void setTextColour(juce::Colour colourToSet){
+        this->textColour = colourToSet;
         repaint();
     }
     

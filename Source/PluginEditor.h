@@ -17,6 +17,7 @@
 //Include Core (Some arrangement of many, laid out) Components
 #include "./CoreComponents/TriggerComponent.h"
 #include "./CoreComponents/TopMenuBar.h"
+#include "./CoreComponents/OutputSettingsComponent.h"
 //Include (Re-usable, utility) Components
 #include "./Components/LEDLight.h"
 #include "./Components/MenuButtonComponent.h"
@@ -43,6 +44,7 @@ private:
     EnvelopeView envelopeView;
     PhaserView phaserView;
     TopMenuBar topMenuBar;
+    OutputSettingsComponent outputSettingsComponent;
 
     //Simple Components
     

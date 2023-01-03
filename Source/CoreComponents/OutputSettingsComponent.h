@@ -3,6 +3,7 @@
 
 class OutputSettingsComponent : public juce::Component
 {
+public:
     OutputSettingsComponent() {
 
     }

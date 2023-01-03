@@ -1,19 +1,20 @@
 #pragma once
 #include <JuceHeader.h>
 
-class MenuButtonComponent : public juce::Button
+class MenuButtonComponent : public juce::TextButton
 {
 public:
-    MenuButtonComponent(juce::String text) : juce::Button(text)
+    MenuButtonComponent(juce::String text) 
     {
         setButtonText(text);
+
     }
     
     void paintButton(juce::Graphics& g, bool isMouseOverButton, bool isButtonDown) override
     {
         g.setColour(buttonColour);
         g.fillRect(getLocalBounds());
-        g.setColour(textColour);
+        g.setColour(juce::Colours::red);
         g.setFont(20.0f);
         g.drawText(getButtonText(), getLocalBounds(), juce::Justification(9));
     }
@@ -33,8 +34,7 @@ public:
 
     private:
     void(*buttonFunction)(const juce::MouseEvent& event);
-    juce::LookAndFeel_V4 customLNF = CustomLNF();
-    juce::Colour buttonColour = customLNF.VIEW;
-    juce::Colour textColour = customLNF.VIEW_TEXT;
+    juce::Colour buttonColour = CustomLNF().VIEW;
+    juce::Colour textColour = CustomLNF().VIEW_TEXT;
     
 };

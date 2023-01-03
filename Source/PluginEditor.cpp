@@ -15,9 +15,11 @@ PhaseTriggerAudioProcessorEditor::PhaseTriggerAudioProcessorEditor (PhaseTrigger
 {
     setSize (500, 250);
     currentView = &phaserView;
+    
+    addAndMakeVisible(topMenuBar);
     addAndMakeVisible(&triggerComponent);
     addAndMakeVisible(currentView);
-    //addAndMakeVisible(outputSettingsComponent);
+    addAndMakeVisible(outputSettingsComponent);
     
 }
 

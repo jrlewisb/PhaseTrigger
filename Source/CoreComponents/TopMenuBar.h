@@ -4,8 +4,9 @@
 #include "../Components/MenuButtonComponent.h"
 
 //define the preset selector component
-class PresetSelector : Juce:Component {
-    PresetSelector() : leftButton("Left", "<"), rightButton("Right", ">"), presetName("Preset Name") {
+class PresetSelector : public juce::Component {
+public:
+    PresetSelector() : leftButton("Left", "<"), rightButton("Right", ">"), presetName("Preset Name", "Preset Name") {
         
         //Add the sub components
         addAndMakeVisible(leftButton);
@@ -20,27 +21,29 @@ class PresetSelector : Juce:Component {
         auto bounds = getLocalBounds();
         auto lButton = bounds.removeFromLeft(bounds.getWidth() * 0.2);
         auto rButton = bounds.removeFromRight(bounds.getWidth() * 0.25);
-        auto presetName = bounds;
+        auto presetNameBounds = bounds;
 
         leftButton.setBounds(lButton);
         rightButton.setBounds(rButton);
-        presetName.setBounds(presetName);
+        presetName.setBounds(presetNameBounds);
         
     }
 
     void paint (juce::Graphics& g) override {
         //Draw the component
+        g.setColour(juce::Colours::red);
+        g.fillRect(getLocalBounds());
     }
 
     private:
-        juce::Button leftButton;
-        juce::Button rightButton;
+        juce::TextButton leftButton;
+        juce::TextButton rightButton;
         juce::Label presetName;
-}
+};
 
-class TopMenuBar : Juce:Component {
-
-    TopMenuBar() : topSettings("Settings"), presetSelector(), phaserButton("Phaser", "Phaser"), envelopeButton("Envelope", "Envelope") {
+class TopMenuBar : public juce::Component {
+public:
+    TopMenuBar() : topSettings("Settings"), phaserButton("Phaser"), envelopeButton("Envelope") {
         
         addAndMakeVisible(topSettings);
         addAndMakeVisible(presetSelector);
@@ -48,9 +51,9 @@ class TopMenuBar : Juce:Component {
         addAndMakeVisible(envelopeButton);
     }
 
-    juce::Button& getPhaserButton() {
-        return &phaserButton;
-    }
+//    const juce::Button* getPhaserButton() {
+//        return phaserButton;
+//    }
 
 
 
@@ -67,11 +70,17 @@ class TopMenuBar : Juce:Component {
         phaserButton.setBounds(phaserButtonBounds);
         envelopeButton.setBounds(envelopeButtonBounds);
     }
+    
+    void paint(juce::Graphics& g) override {
+        //Draw the component
+        g.setColour(juce::Colours::blue);
+        g.fillRect(getLocalBounds());
+    }
 
     private:
         MenuButtonComponent topSettings;
-        juce::Component presetSelector;
+        PresetSelector presetSelector;
         MenuButtonComponent phaserButton;
         MenuButtonComponent envelopeButton;
 
-}
+};

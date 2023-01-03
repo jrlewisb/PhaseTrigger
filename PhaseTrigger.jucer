@@ -4,12 +4,21 @@
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="R5RSB4" name="PhaseTrigger">
     <GROUP id="{2A5C9D31-8B8E-8A62-7F7A-C60DEA83ADCB}" name="Source">
-      <GROUP id="{88AD6502-1587-432D-0EC9-5702C5F9A9F7}" name="MyComponents">
-        <FILE id="WfYTl0" name="LEDLight.h" compile="0" resource="0" file="Source/LEDLight.h"/>
+      <GROUP id="{8A66EF9D-DF3D-987C-F605-661D642527CA}" name="Views">
+        <FILE id="CurGoo" name="EnvelopeView.h" compile="0" resource="0" file="Source/Views/EnvelopeView.h"/>
+        <FILE id="t3iv9c" name="PhaserView.h" compile="0" resource="0" file="Source/Views/PhaserView.h"/>
       </GROUP>
-      <GROUP id="{2A9B13DD-EF89-1E04-D690-87B8F9D4849D}" name="Views">
-        <FILE id="dYqyu3" name="EnvelopeView.h" compile="0" resource="0" file="Source/EnvelopeView.h"/>
-        <FILE id="cOlJPW" name="PhaserView.h" compile="0" resource="0" file="Source/PhaserView.h"/>
+      <GROUP id="{896E4B91-5A45-A69E-1B0A-2CA1DB9069CA}" name="Components">
+        <FILE id="LPUz2t" name="LEDLight.h" compile="0" resource="0" file="Source/Components/LEDLight.h"/>
+        <FILE id="aYeUlZ" name="MenuButtonComponent.h" compile="0" resource="0"
+              file="Source/Components/MenuButtonComponent.h"/>
+      </GROUP>
+      <GROUP id="{6ED3EAD9-1A15-70F6-ED97-9D93509AF081}" name="CoreComponents">
+        <FILE id="rZ3gRB" name="OutputSettingsComponent.h" compile="0" resource="0"
+              file="Source/CoreComponents/OutputSettingsComponent.h"/>
+        <FILE id="aJW3hQ" name="TopMenuBar.h" compile="0" resource="0" file="Source/CoreComponents/TopMenuBar.h"/>
+        <FILE id="OqhmM1" name="TriggerComponent.h" compile="0" resource="0"
+              file="Source/CoreComponents/TriggerComponent.h"/>
       </GROUP>
       <FILE id="xdffbN" name="CustomLNF.h" compile="0" resource="0" file="Source/CustomLNF.h"/>
       <FILE id="ALzjMP" name="PluginProcessor.cpp" compile="1" resource="0"

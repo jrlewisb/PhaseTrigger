@@ -1,5 +1,6 @@
 #pragma once
 #include <JuceHeader.h>
+#include "../Components/LEDLight.h"
 
 class TriggerComponent : public juce::Component
 {

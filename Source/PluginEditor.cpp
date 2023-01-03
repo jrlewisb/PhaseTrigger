@@ -13,6 +13,7 @@
 PhaseTriggerAudioProcessorEditor::PhaseTriggerAudioProcessorEditor (PhaseTriggerAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
+    setLookAndFeel(&customLNF);
     setSize (500, 250);
     currentView = &phaserView;
 
@@ -38,8 +39,8 @@ void PhaseTriggerAudioProcessorEditor::buttonClicked(juce::Button* button)
 {
     if (button == &topMenuBar.getPhaserButton())
     {
-        topMenuBar.getPhaserButton().setButtonColour(juce::Colours::black);
-        topMenuBar.getPhaserButton().setButtonColour(juce::Colours::blue);
+        topMenuBar.getPhaserButton().setButtonColour(customLNF.SELECTED_VIEW);
+        topMenuBar.getEnvelopeButton().setButtonColour(customLNF.VIEW);
         currentView->setVisible(false);
         currentView = &phaserView;
         currentView->setVisible(true);
@@ -47,7 +48,7 @@ void PhaseTriggerAudioProcessorEditor::buttonClicked(juce::Button* button)
     else if (button == &topMenuBar.getEnvelopeButton())
     {
         topMenuBar.getPhaserButton().setButtonColour(juce::Colours::blue);
-        topMenuBar.getPhaserButton().setButtonColour(juce::Colours::black);
+        topMenuBar.getEnvelopeButton().setButtonColour(juce::Colours::black);
         currentView->setVisible(false);
         currentView = &envelopeView;
         currentView->setVisible(true);

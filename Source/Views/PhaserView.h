@@ -11,6 +11,7 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include "../CoreComponents/PhaserVisualComponent.h"
 
 struct TitledLabel : public juce::Component
 {
@@ -67,6 +68,7 @@ public:
             //label.setFont();
             addAndMakeVisible(titledLabel);
         }
+        addAndMakeVisible(phaserVisualComponent);
         
         
 
@@ -89,11 +91,15 @@ public:
         auto bounds = getLocalBounds();
         visualBounds = bounds.removeFromTop(bounds.getHeight() * 0.8);
         labelSettingsBounds = bounds;
+
+        phaserVisualComponent.setBounds(visualBounds);
+
+
         
-        notchesTitledLabel.setBounds(labelSettingsBounds.removeFromLeft(labelSettingsBounds.getWidth() * 0.25));
-        centerTitledLabel.setBounds(labelSettingsBounds.removeFromLeft(labelSettingsBounds.getWidth() * 0.3333));
-        spreadTitledLabel.setBounds(labelSettingsBounds.removeFromLeft(labelSettingsBounds.getWidth() * 0.5));
-        blendTitledLabel.setBounds(labelSettingsBounds);
+        // notchesTitledLabel.setBounds(labelSettingsBounds.removeFromLeft(labelSettingsBounds.getWidth() * 0.25));
+        // centerTitledLabel.setBounds(labelSettingsBounds.removeFromLeft(labelSettingsBounds.getWidth() * 0.3333));
+        // spreadTitledLabel.setBounds(labelSettingsBounds.removeFromLeft(labelSettingsBounds.getWidth() * 0.5));
+        // blendTitledLabel.setBounds(labelSettingsBounds);
     }
 
 private:
@@ -109,6 +115,8 @@ private:
     TitledLabel centerTitledLabel;
     TitledLabel spreadTitledLabel;
     TitledLabel blendTitledLabel;
+
+    PhaserVisualComponent phaserVisualComponent;
     
     
     

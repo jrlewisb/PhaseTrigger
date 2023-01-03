@@ -4,6 +4,19 @@
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="R5RSB4" name="PhaseTrigger">
     <GROUP id="{2A5C9D31-8B8E-8A62-7F7A-C60DEA83ADCB}" name="Source">
+      <GROUP id="{3A77DD88-5577-FFF7-3CBF-97085C1BCB84}" name="BinaryBuilderFonts">
+        <FILE id="gKliWn" name="spacegrotesk.cpp" compile="1" resource="0"
+              file="Source/BinaryBuilderFonts/spacegrotesk.cpp"/>
+        <FILE id="sty6Lp" name="spacegrotesk.h" compile="0" resource="0" file="Source/BinaryBuilderFonts/spacegrotesk.h"/>
+      </GROUP>
+      <GROUP id="{5B764968-BCD3-4BF6-BE36-D9AAC184673D}" name="Assets">
+        <GROUP id="{E1722637-F0C9-F55B-D380-23062E873E25}" name="Fonts">
+          <FILE id="wtj70i" name="SpaceGrotesk-Medium.ttf" compile="0" resource="1"
+                file="Source/Assets/Fonts/SpaceGrotesk-Medium.ttf"/>
+          <FILE id="Y0e5C8" name="SpaceGrotesk-Regular.ttf" compile="0" resource="1"
+                file="Source/Assets/Fonts/SpaceGrotesk-Regular.ttf"/>
+        </GROUP>
+      </GROUP>
       <GROUP id="{8A66EF9D-DF3D-987C-F605-661D642527CA}" name="Views">
         <FILE id="CurGoo" name="EnvelopeView.h" compile="0" resource="0" file="Source/Views/EnvelopeView.h"/>
         <FILE id="t3iv9c" name="PhaserView.h" compile="0" resource="0" file="Source/Views/PhaserView.h"/>
@@ -16,6 +29,8 @@
       <GROUP id="{6ED3EAD9-1A15-70F6-ED97-9D93509AF081}" name="CoreComponents">
         <FILE id="rZ3gRB" name="OutputSettingsComponent.h" compile="0" resource="0"
               file="Source/CoreComponents/OutputSettingsComponent.h"/>
+        <FILE id="L5l6mO" name="PhaserVisualComponent.h" compile="0" resource="0"
+              file="Source/CoreComponents/PhaserVisualComponent.h"/>
         <FILE id="aJW3hQ" name="TopMenuBar.h" compile="0" resource="0" file="Source/CoreComponents/TopMenuBar.h"/>
         <FILE id="OqhmM1" name="TriggerComponent.h" compile="0" resource="0"
               file="Source/CoreComponents/TriggerComponent.h"/>

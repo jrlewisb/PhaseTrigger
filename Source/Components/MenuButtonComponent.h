@@ -14,7 +14,7 @@ public:
     {
         g.setColour(buttonColour);
         g.fillRect(getLocalBounds());
-        g.setColour(juce::Colours::red);
+        g.setColour(textColour);
         g.setFont(20.0f);
         g.drawText(getButtonText(), getLocalBounds(), juce::Justification(36));
     }

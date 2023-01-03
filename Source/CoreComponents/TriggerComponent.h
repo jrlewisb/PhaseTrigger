@@ -10,26 +10,32 @@ public:
                          ledLight()
     {
         textLabel.setJustificationType(juce::Justification(12));
+        textLabel.setColour(juce::Label::textColourId, MyColours::VIEW_TEXT);
         addAndMakeVisible(textLabel);
         addAndMakeVisible(ledLight);
         addAndMakeVisible(onOffButton);
     }
     
     void paint(juce::Graphics& g) override{
-        g.setColour(juce::Colours::grey);
+        g.setColour(MyColours::VIEW);
         g.fillRect(getLocalBounds());
     }
 
     void resized() override{
         auto bounds = getLocalBounds();
-        auto labelBounds = bounds.removeFromTop(bounds.getHeight() * 0.2);
-        auto ledLightBounds = bounds.removeFromTop(bounds.getHeight() * 0.5);
+        int marginY = bounds.getHeight() * 0.05f;
+        bounds.removeFromTop(marginY); bounds.removeFromBottom(marginY);
+        int marginX = bounds.getWidth() * 0.1f;
+        bounds.removeFromLeft(marginX); bounds.removeFromRight(marginX);
+        
+        auto labelBounds = bounds.removeFromTop(bounds.getHeight() * 0.3);
+        auto ledLightBounds = bounds.removeFromTop(bounds.getHeight() * 0.3);
         
         textLabel.setBounds(labelBounds);
         ledLight.setBounds(ledLightBounds);
         
-        int buttonMarginY = bounds.getHeight() * 0.3;
-        bounds.removeFromTop(buttonMarginY); bounds.removeFromBottom(buttonMarginY);
+        
+        
         onOffButton.setBounds(bounds);
         
         

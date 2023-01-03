@@ -7,7 +7,10 @@
 class PresetSelector : public juce::Component {
 public:
     PresetSelector() : leftButton("Left", "<"), rightButton("Right", ">"), presetName("Preset Name", "Preset Name") {
-        
+        leftButton.setButtonText("<");
+        rightButton.setButtonText(">");
+        presetName.setJustificationType(juce::Justification::centred);
+        presetName.setColour(juce::Label::textColourId, MyColours::VIEW_TEXT);
         //Add the sub components
         addAndMakeVisible(leftButton);
         addAndMakeVisible(rightButton);
@@ -31,7 +34,7 @@ public:
 
     void paint (juce::Graphics& g) override {
         //Draw the component
-        g.setColour(juce::Colours::red);
+        g.setColour(MyColours::VIEW);
         g.fillRect(getLocalBounds());
     }
 

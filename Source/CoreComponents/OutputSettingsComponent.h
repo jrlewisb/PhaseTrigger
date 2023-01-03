@@ -13,11 +13,11 @@ public:
     }
 
     void paint(juce::Graphics& g) override {
-        g.setColour(juce::Colours::grey);
+        g.setColour(MyColours::SELECTED_VIEW);
         g.fillRect(getLocalBounds());
-        g.setColour(juce::Colours::white);
+        g.setColour(MyColours::SELECTED_VIEW_TEXT);
         g.setFont(20.0f);
-        g.drawText("Output Settings", getLocalBounds(), juce::Justification(9));
+        g.drawText("Output Settings", getLocalBounds(), juce::Justification(36));
     }
 
 

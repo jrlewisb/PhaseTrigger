@@ -30,10 +30,10 @@ public:
     void paint (juce::Graphics& g) override
     {
         int minimumDimension = juce::jmin(getWidth(),getHeight());
-        float outerCircleRadius = minimumDimension / 7;
-        float circleRadius = minimumDimension / 8;
+        float outerCircleRadius = minimumDimension / 2;
+        float circleRadius = minimumDimension / 2.5f;
         
-        g.setColour(juce::Colours::black);
+        g.setColour(MyColours::VIEW_DETAIL);
         g.fillEllipse((getWidth()/2) - outerCircleRadius, (getHeight()/2) - outerCircleRadius, 2*outerCircleRadius, 2*outerCircleRadius);
         
         g.setColour(juce::Colours::green);

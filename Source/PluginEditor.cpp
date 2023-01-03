@@ -13,18 +13,24 @@
 PhaseTriggerAudioProcessorEditor::PhaseTriggerAudioProcessorEditor (PhaseTriggerAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p), settingsPopupMenu()
 {
-    setLookAndFeel(&customLNF);
+    juce::LookAndFeel::setDefaultLookAndFeel(&customLNF);
     setSize (500, 250);
-    currentView = &envelopeView;
+    //init currentview
+    currentView = &phaserView;
+    topMenuBar.getPhaserButton().setButtonColour(MyColours::SELECTED_VIEW);
+    topMenuBar.getPhaserButton().setTextColour(MyColours::SELECTED_VIEW_TEXT);
+    
+    //init settings popupmenu
     settingsPopupMenu.addItem(juce::PopupMenu::Item("New").setID(1));
     settingsPopupMenu.addItem(juce::PopupMenu::Item("Open").setID(2));
     settingsPopupMenu.addItem(juce::PopupMenu::Item("Save").setID(3));
 
-    //assign functionality
+    //assign listeners
     topMenuBar.getPhaserButton().addListener(this);
     topMenuBar.getEnvelopeButton().addListener(this);
     topMenuBar.getSettingsButton().addListener(this);
     
+    //make components visible
     addAndMakeVisible(topMenuBar);
     addAndMakeVisible(&triggerComponent);
     addAndMakeVisible(currentView);
@@ -43,6 +49,8 @@ PhaseTriggerAudioProcessorEditor::~PhaseTriggerAudioProcessorEditor()
 
 void PhaseTriggerAudioProcessorEditor::settingsSelectionHandler(int result)
 {
+    DBG(result);
+    //todo
     switch (result)
     {
     case 1:
@@ -64,7 +72,7 @@ void PhaseTriggerAudioProcessorEditor::buttonClicked(juce::Button* button)
         topMenuBar.getPhaserButton().setTextColour(MyColours::SELECTED_VIEW_TEXT);
         topMenuBar.getEnvelopeButton().setButtonColour(MyColours::VIEW);
         topMenuBar.getEnvelopeButton().setTextColour(MyColours::VIEW_TEXT);
-        //currentView->setVisible(false);
+        
         currentView = &phaserView;
         currentView->setVisible(true);
     }
@@ -74,7 +82,7 @@ void PhaseTriggerAudioProcessorEditor::buttonClicked(juce::Button* button)
         topMenuBar.getPhaserButton().setTextColour(MyColours::VIEW_TEXT);
         topMenuBar.getEnvelopeButton().setButtonColour(MyColours::SELECTED_VIEW);
         topMenuBar.getEnvelopeButton().setTextColour(MyColours::SELECTED_VIEW_TEXT);
-        //currentView->setVisible(false);
+
         currentView = &envelopeView;
         currentView->setVisible(true);
     }else if( button == &topMenuBar.getSettingsButton())

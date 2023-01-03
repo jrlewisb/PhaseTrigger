@@ -51,9 +51,13 @@ public:
         addAndMakeVisible(envelopeButton);
     }
 
-//    const juce::Button* getPhaserButton() {
-//        return phaserButton;
-//    }
+    MenuButtonComponent& getPhaserButton() {
+        return phaserButton;
+    }
+    
+    MenuButtonComponent& getEnvelopeButton(){
+        return envelopeButton;
+    }
 
 
 

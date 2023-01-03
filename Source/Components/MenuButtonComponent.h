@@ -19,21 +19,21 @@ public:
         g.drawText(getButtonText(), getLocalBounds(), juce::Justification(9));
     }
 
-    void setButtonFunction(void(*funcToSet)(const juce::MouseEvent& event)){
-        this->buttonFunction = funcToSet;
-    }
+//    void setButtonFunction(void(*funcToSet)(const juce::MouseEvent& event, MenuButtonComponent* mbc)){
+//        this->buttonFunction = funcToSet;
+//    }
 
     void setButtonColour(juce::Colour colourToSet){
         this->buttonColour = colourToSet;
     }
     
-    void mouseDown(const juce::MouseEvent& event) override
-    {
-        buttonFunction(event);
-    }
+//    void mouseDown(const juce::MouseEvent& event) override
+//    {
+//        buttonFunction(event, this);
+//    }
 
     private:
-    void(*buttonFunction)(const juce::MouseEvent& event);
+    //void(*buttonFunction)(const juce::MouseEvent& event, MenuButtonComponent& mbc);
     juce::Colour buttonColour = CustomLNF().VIEW;
     juce::Colour textColour = CustomLNF().VIEW_TEXT;
     

@@ -23,7 +23,7 @@
 #include "./Components/MenuButtonComponent.h"
 
 
-class PhaseTriggerAudioProcessorEditor  : public juce::AudioProcessorEditor
+class PhaseTriggerAudioProcessorEditor  : public juce::AudioProcessorEditor, public juce::Button::Listener
 {
 public:
     PhaseTriggerAudioProcessorEditor (PhaseTriggerAudioProcessor&);
@@ -32,6 +32,9 @@ public:
     //==============================================================================
     void paint (juce::Graphics&) override;
     void resized() override;
+
+    //virtuals to override
+    void buttonClicked(juce::Button* button) override;
 
 private:
     // This reference is provided as a quick way for your editor to

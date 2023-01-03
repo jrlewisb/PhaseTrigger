@@ -16,11 +16,12 @@ public:
 
     }
 
-    ~EnvelopeView() override
-    {
-    }
+
     
     void paint(juce::Graphics& g) override{
+        g.setColour(MyColours::SELECTED_VIEW);
+        g.fillRect(getLocalBounds());
+        g.drawText("EnvelopeView", 0, 0, getWidth(), getHeight(), juce::Justification(1));
         
     }
 

@@ -25,6 +25,7 @@ public:
 
     void setButtonColour(juce::Colour colourToSet){
         this->buttonColour = colourToSet;
+        repaint();
     }
     
 //    void mouseDown(const juce::MouseEvent& event) override
@@ -34,7 +35,7 @@ public:
 
     private:
     //void(*buttonFunction)(const juce::MouseEvent& event, MenuButtonComponent& mbc);
-    juce::Colour buttonColour = CustomLNF().VIEW;
-    juce::Colour textColour = CustomLNF().VIEW_TEXT;
+    juce::Colour buttonColour = MyColours::VIEW;
+    juce::Colour textColour = MyColours::VIEW_TEXT;
     
 };

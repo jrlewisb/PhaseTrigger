@@ -79,6 +79,9 @@ public:
     void paint (juce::Graphics& g) override
     {
 
+        g.setColour(MyColours::SELECTED_VIEW);
+        g.fillRect(getLocalBounds());
+
     }
 
     void resized() override

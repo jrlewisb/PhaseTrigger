@@ -1,10 +1,11 @@
 <h1> PhaseTrigger </h1>
 
-<h5>PhaseTrigger is <sub>eventually going to be</sub> a simple audio plugin designed to help sound designers employ fine-tuned phasing effects. </h5>
-This will be achieved via 
-- Midi/Gate Triggered Envelopes
-- Linked, or Independent centers and envelopes for individual phaser notches
-- 1 - 12 Notches available to control.
+<h4>PhaseTrigger is <sub>  eventually going to be  </sub> a simple audio plugin designed to help sound designers employ fine-tuned phasing effects. </h4>
+
+This will be achieved via:
+* Midi/Gate Triggered Envelopes
+* Linked, or Independent centers and envelopes for individual phaser notches
+* 1 - 12 Notches available to control.
 
 Created using JUCE Framework, this is currently a non-profit educational project for my own learning and enjoyment.
 

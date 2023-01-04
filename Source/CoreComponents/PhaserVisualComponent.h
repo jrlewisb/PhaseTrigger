@@ -1,29 +1,37 @@
 #pragma once
 #include <JuceHeader.h>
 
-class PhaserVisualComponent  : public juce::Component, public juce::AudioProcessorValueTreeState::Listener
+struct PhaserVisualComponent  : juce::Component,
+                                juce::AudioProcessorValueTreeState::Listener
+//this class is essentially the visualisation of the phaser settings
+//the core visual of this class is a logarithmic representation of the audible frequency range
 {
-    //this class is essentially the visualisation of the phaser settings
-    //the core visual of this class is a logarithmic representation of the audible frequency range
-public:
-    PhaserVisualComponent(juce::AudioProcessorValueTreeState& apvts) : apvts(apvts){
+    PhaserVisualComponent(juce::AudioProcessorValueTreeState& apvts) : apvts(apvts)
+    {   //CONSTRUCTOR
         apvts.addParameterListener("NOTCHES", this);
         
-        
-        for(int i = 1; i < 5; i++){
-            for(int j = 1; j < 12; j++){
-                int value = j * pow(10, i);
+        makeValuesArray(); //refactored this logic into a function for clarity
+    }
+    
+    ~PhaserVisualComponent() override
+    {   //DESTRUCTOR
+        apvts.removeParameterListener("NOTCHES", this);
+    }
+    
+    
+    private:
+    void makeValuesArray()
+    {
+        for(int i = 1; i < 5; i++){             //For each magnitude (unit) we want to display
+            for(int j = 1; j < 12; j++){            //For each notch we want to draw in this unit
+                int value = j * pow(10, i);             //the value is an evenly spaced multiple of the magnitude
                 if(value > 28000){
-                    break;
+                    break;                              //If the value exceeds 28000, we are not interested in drawing any more notches -> BREAK
                 }else{
-                    values.push_back(value);
+                    values.push_back(value);            //Else, push the value into our values vector.
                 }
             }
         }
-    }
-    
-    ~PhaserVisualComponent() override{
-        apvts.removeParameterListener("NOTCHES", this);
     }
     
    
@@ -44,8 +52,7 @@ public:
                 g.drawLine(x, yMargin, x, getHeight() - yMargin, 1.0f);
             }
         }
-        //now we draw the notches , lets just say each one appears at 10khz/n + (i * 20khz/n)
-        //where n is the number of notches and i is the index of the notch
+        
         g.setColour(juce::Colours::green.brighter());
 
         for(int notchX : notchXValues){
@@ -68,7 +75,13 @@ public:
         
     }
 
-    void calculateNotchXValues(int numNotches){
+    void calculateNotchXValues(int numNotches)
+    /*
+        This function calculates the x values needed to draw each notch.
+        lets just say each one appears at 10khz/n + (i * 20khz/n) TODO: replace 10khz with value from center control
+        where n is the number of notches and i is the index of the notch
+     */
+     {
         notchXValues.clear();
         for(int i = 0; i < numNotches; i++){
             int x = (log10((10000/numNotches) + (i * 20000 / numNotches)) * (getWidth() / 4.35)) - (getWidth() / 8);

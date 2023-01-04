@@ -1,6 +1,7 @@
 #pragma once
 #include <JuceHeader.h>
 
+//TODO: Implement this entire class
 class OutputSettingsComponent : public juce::Component
 {
 public:

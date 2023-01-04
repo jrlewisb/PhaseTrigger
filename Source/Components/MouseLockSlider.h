@@ -3,15 +3,16 @@
 #include <JuceHeader.h>
 
 struct MouseLockSlider : public juce::Slider
-/*todo: refactor this class alongside the wrapper and make the layouts into a flexbox so it fills its space like
- ^ font height (ie; 16px)
- ^ control font height (ie; 14px)
- | empty space (bounds - (font height + control font height)
+/*  TODO: refactor this class alongside the wrapper and make the layouts into a flexbox so it fills its space like:
+        ^ font height (ie; 16px)
+        ^ control font height (ie; 14px)
+        | empty space (bounds - (font height + control font height)
  */
 {
     MouseLockSlider()
     {
     }
+    
     void paint(juce::Graphics& g) override {
         g.setColour(MyColours::SELECTED_VIEW_DETAIL);
         g.fillRoundedRectangle(getX(), getY(), getWidth(), getHeight(), 2.f);

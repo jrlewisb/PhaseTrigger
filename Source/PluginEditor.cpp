@@ -12,7 +12,7 @@
 //==============================================================================
 PhaseTriggerAudioProcessorEditor::PhaseTriggerAudioProcessorEditor (PhaseTriggerAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p), settingsPopupMenu(), 
-    notchesAttachment(audioProcessor.apvts, "NOTCHES", phaserView.getNotchesSlider())
+    phaserView(p.apvts)
 {
     juce::LookAndFeel::setDefaultLookAndFeel(&customLNF);
     setSize (500, 250);

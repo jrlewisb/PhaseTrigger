@@ -50,7 +50,7 @@ private:
 class PhaserView  : public juce::Component
 {
 public:
-    PhaserView() : notchesMouseLockSliderWrapper("Notches", notchesMouseLockSlider)
+    PhaserView(juce::AudioProcessorValueTreeState& apvts) : notchesMouseLockSliderWrapper("Notches", notchesMouseLockSlider) , notchesAttachment(apvts, "NOTCHES", notchesMouseLockSlider), phaserVisualComponent(apvts)
     {
         
         addAndMakeVisible(phaserVisualComponent);
@@ -107,6 +107,7 @@ private:
     
     MouseLockSlider notchesMouseLockSlider;
     MouseLockSliderWrapper notchesMouseLockSliderWrapper;
+    juce::AudioProcessorValueTreeState::SliderAttachment notchesAttachment;
 
     PhaserVisualComponent phaserVisualComponent;
     

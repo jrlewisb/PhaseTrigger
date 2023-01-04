@@ -1,32 +1,30 @@
-/*
-  ==============================================================================
-
-    This file contains the basic framework code for a JUCE plugin editor.
-
-  ==============================================================================
-*/
-
 #include "./PluginProcessor.h"
 #include "./PluginEditor.h"
 
 //==============================================================================
 PhaseTriggerAudioProcessorEditor::PhaseTriggerAudioProcessorEditor (PhaseTriggerAudioProcessor& p)
-    : AudioProcessorEditor (&p), audioProcessor (p), settingsPopupMenu(), 
-    phaserView(p.apvts)
+    //Initialiser List
+    : AudioProcessorEditor (&p),
+      audioProcessor (p),
+      phaserView(p.apvts),
+      settingsPopupMenu()
+      
 {
+    //Set LNF and Size so they can be referenced throughout the project
     juce::LookAndFeel::setDefaultLookAndFeel(&customLNF);
     setSize (500, 250);
-    //init currentview
+    
+    //Initialisation of Current View and related visual context
     currentView = &phaserView;
     topMenuBar.getPhaserButton().setButtonColour(MyColours::SELECTED_VIEW);
     topMenuBar.getPhaserButton().setTextColour(MyColours::SELECTED_VIEW_TEXT);
     
-    //init settings popupmenu
+    //Add Items to the Settings popup menu
     settingsPopupMenu.addItem(juce::PopupMenu::Item("New").setID(1));
     settingsPopupMenu.addItem(juce::PopupMenu::Item("Open").setID(2));
     settingsPopupMenu.addItem(juce::PopupMenu::Item("Save").setID(3));
 
-    //assign listeners
+    //Assign self as listener to Top menu buttons
     topMenuBar.getPhaserButton().addListener(this);
     topMenuBar.getEnvelopeButton().addListener(this);
     topMenuBar.getSettingsButton().addListener(this);
@@ -42,23 +40,27 @@ PhaseTriggerAudioProcessorEditor::PhaseTriggerAudioProcessorEditor (PhaseTrigger
 
 PhaseTriggerAudioProcessorEditor::~PhaseTriggerAudioProcessorEditor()
 {
-  topMenuBar.getPhaserButton().removeListener(this);
-  topMenuBar.getEnvelopeButton().removeListener(this);
-  topMenuBar.getSettingsButton().removeListener(this);
+    //Destructor, should remove self as listener from all previously registered in constructor
+    topMenuBar.getPhaserButton().removeListener(this);
+    topMenuBar.getEnvelopeButton().removeListener(this);
+    topMenuBar.getSettingsButton().removeListener(this);
 
 }
 
 void PhaseTriggerAudioProcessorEditor::settingsSelectionHandler(int result)
 {
     DBG(result);
-    //todo
+    //TODO: Callback for the Top Menu Settings dropdown, include desired functionality based on the result of this callback
     switch (result)
     {
     case 1:
+        //"NEW" => Initialise blank editor with default settings
         break;
     case 2:
+        //"OPEN" => Open file and restore audioprocessorvaluetreestate from serialised data
         break;
     case 3:
+        //"SAVE" => Save audioprocessorvaluetreestate to serialised data and allow user to choose location
         break;
     default:
         break;
@@ -67,7 +69,7 @@ void PhaseTriggerAudioProcessorEditor::settingsSelectionHandler(int result)
 
 void PhaseTriggerAudioProcessorEditor::buttonClicked(juce::Button* button)
 {
-    if (button == &topMenuBar.getPhaserButton())
+    if (button == &topMenuBar.getPhaserButton()) //PhaserView clicked
     {
         topMenuBar.getPhaserButton().setButtonColour(MyColours::SELECTED_VIEW);
         topMenuBar.getPhaserButton().setTextColour(MyColours::SELECTED_VIEW_TEXT);
@@ -77,7 +79,7 @@ void PhaseTriggerAudioProcessorEditor::buttonClicked(juce::Button* button)
         currentView = &phaserView;
         addAndMakeVisible(currentView);
     }
-    else if (button == &topMenuBar.getEnvelopeButton())
+    else if (button == &topMenuBar.getEnvelopeButton()) //EnvelopeView clicked
     {
         topMenuBar.getPhaserButton().setButtonColour(MyColours::VIEW);
         topMenuBar.getPhaserButton().setTextColour(MyColours::VIEW_TEXT);
@@ -86,42 +88,42 @@ void PhaseTriggerAudioProcessorEditor::buttonClicked(juce::Button* button)
         currentView->setVisible(false);
         currentView = &envelopeView;
         addAndMakeVisible(currentView);
-    }else if( button == &topMenuBar.getSettingsButton())
+    }else if( button == &topMenuBar.getSettingsButton()) //Settings button clicked
     {
         settingsPopupMenu.showMenuAsync(juce::PopupMenu::Options().withTargetComponent(&topMenuBar.getSettingsButton()),
             [&](int result){settingsSelectionHandler(result);});
     }
 }
-//==============================================================================
+
+
 void PhaseTriggerAudioProcessorEditor::paint (juce::Graphics& g)
 {
-    // (Our component is opaque, so we must completely fill the background with a solid colour)
+    /*
+     Simple paint function as most painting is handled by components,
+     this class should handle setting bounds of children,
+     and callbacks that affect the top-level editor state.
+    */
     g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
-    
-
-
 }
 
 void PhaseTriggerAudioProcessorEditor::resized()
 {
     auto bounds = getLocalBounds();
-    auto topBounds = bounds.removeFromTop(bounds.getHeight() * 0.15);
-    auto midBounds = bounds.removeFromTop(bounds.getHeight() * 0.7);
-    auto bottomBounds = bounds;
-
-    //top bar
+    
+    auto topBounds = bounds.removeFromTop(bounds.getHeight() * 0.15);   //Top Menu Bar
+    auto midBounds = bounds.removeFromTop(bounds.getHeight() * 0.7);    //Area for the Views
+    auto bottomBounds = bounds;                                         //Bottom section for components
+    
+    //TOP
     topMenuBar.setBounds(topBounds);
 
-    //these will be set visible / invisible based on which of the buttons are pressed in the tab component
-    phaserView.setBounds(midBounds);
-    envelopeView.setBounds(midBounds);
-    //currentView->setBounds(midBounds);
-    //always visible
-  
-    //bottom layout
+    //MIDDLE
+    phaserView.setBounds(midBounds);    //these will be set visible / invisible
+    envelopeView.setBounds(midBounds);  //based on which of the buttons are pressed in the tab component
+    
+    //BOTTOM
     auto triggerBounds = bottomBounds.removeFromLeft(bottomBounds.getWidth() * 0.2);
     triggerComponent.setBounds(triggerBounds);
-
     outputSettingsComponent.setBounds(bottomBounds);
 
 

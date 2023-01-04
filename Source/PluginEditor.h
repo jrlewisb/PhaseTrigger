@@ -1,11 +1,3 @@
-/*
-  ==============================================================================
-
-    This file contains the basic framework code for a JUCE plugin editor.
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include <JuceHeader.h>
@@ -18,9 +10,7 @@
 #include "./CoreComponents/TriggerComponent.h"
 #include "./CoreComponents/TopMenuBar.h"
 #include "./CoreComponents/OutputSettingsComponent.h"
-//Include (Re-usable, utility) Components
-#include "./Components/LEDLight.h"
-#include "./Components/MenuButtonComponent.h"
+
 
 
 class PhaseTriggerAudioProcessorEditor  : public juce::AudioProcessorEditor, public juce::Button::Listener
@@ -29,7 +19,6 @@ public:
     PhaseTriggerAudioProcessorEditor (PhaseTriggerAudioProcessor&);
     ~PhaseTriggerAudioProcessorEditor() override;
 
-    //==============================================================================
     void paint (juce::Graphics&) override;
     void resized() override;
 
@@ -41,8 +30,6 @@ public:
 
 private:
     CustomLNF customLNF;
-    // This reference is provided as a quick way for your editor to
-    // access the processor object that created it.
     PhaseTriggerAudioProcessor& audioProcessor;
     
     //Component instances

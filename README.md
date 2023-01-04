@@ -10,7 +10,9 @@ Created using JUCE Framework, this is currently a non-profit educational project
 
 <h3> Progress </h3>
 <h4> 4 Jan - 5 Jan </h4>
+
 ![Progress v2](./Images/Progress2.png)
+
 Thanks to some help from [Matthjis Hollemans](https://leanpub.com/u/machinethink) I was able to get the visualisation for the logspaced frequency spectrum onto the plugin.
 I also made some custom components, and connected them to the AudioProcessorValueTreeState so that they could interact, and they do.
 Next step is making a control using the component type that I created for notch, this time called "center". I will substitute the value of center for the 10khz magic number present in the phaser visualisation so that adjusting that also reflects visually.

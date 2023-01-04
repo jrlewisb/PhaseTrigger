@@ -72,9 +72,9 @@ void PhaseTriggerAudioProcessorEditor::buttonClicked(juce::Button* button)
         topMenuBar.getPhaserButton().setTextColour(MyColours::SELECTED_VIEW_TEXT);
         topMenuBar.getEnvelopeButton().setButtonColour(MyColours::VIEW);
         topMenuBar.getEnvelopeButton().setTextColour(MyColours::VIEW_TEXT);
-        
+        currentView->setVisible(false);
         currentView = &phaserView;
-        currentView->setVisible(true);
+        addAndMakeVisible(currentView);
     }
     else if (button == &topMenuBar.getEnvelopeButton())
     {
@@ -82,9 +82,9 @@ void PhaseTriggerAudioProcessorEditor::buttonClicked(juce::Button* button)
         topMenuBar.getPhaserButton().setTextColour(MyColours::VIEW_TEXT);
         topMenuBar.getEnvelopeButton().setButtonColour(MyColours::SELECTED_VIEW);
         topMenuBar.getEnvelopeButton().setTextColour(MyColours::SELECTED_VIEW_TEXT);
-
+        currentView->setVisible(false);
         currentView = &envelopeView;
-        currentView->setVisible(true);
+        addAndMakeVisible(currentView);
     }else if( button == &topMenuBar.getSettingsButton())
     {
         settingsPopupMenu.showMenuAsync(juce::PopupMenu::Options().withTargetComponent(&topMenuBar.getSettingsButton()),
@@ -114,6 +114,7 @@ void PhaseTriggerAudioProcessorEditor::resized()
     //these will be set visible / invisible based on which of the buttons are pressed in the tab component
     phaserView.setBounds(midBounds);
     envelopeView.setBounds(midBounds);
+    //currentView->setBounds(midBounds);
     //always visible
   
     //bottom layout

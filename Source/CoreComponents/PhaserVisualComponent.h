@@ -7,29 +7,61 @@ class PhaserVisualComponent  : public juce::Component
     //the core visual of this class is a logarithmic representation of the audible frequency range
     //we will draw a line of a different colour to represent each notch in the phaser
     //the line will be drawn from the centre of the component to the edge of the component
+public:
+    PhaserVisualComponent(){
+        for(int i = 1; i < 5; i++){
+            for(int j = 1; j < 12; j++){
+                int value = j * pow(10, i);
+                if(value > 28000){
+                    break;
+                }else{
+                    values.push_back(value);
+                }
+            }
+        }
+    }
 
     void paint(juce::Graphics& g) override
     {
-        //draw lines from the top of the component to the bottom of the component, spaced logarithmically apart
-        //reset the logarithmic spacing at 10hz, 100hz, 1000hz, 10000hz
-        //10, 20, 40, 80,
-        //160, 320, 640, 1280,
-        //2560, 5120, 10240, 20480, 40960
-        auto quarterWidth = getWidth() * 0.25f;
-        auto offset = getWidth() * 0.088f;
-        auto logTo100 = quarterWidth + offset;
-        auto logTo1000 = logTo100 + (quarterWidth);
-        auto logTo10000 = logTo1000 + (quarterWidth);
-        auto logTo100000 = logTo10000 + (quarterWidth);
-
+        g.setColour(MyColours::SELECTED_VIEW.darker().darker());
+        g.fillRoundedRectangle(xMargin, 0, getWidth() - 2*xMargin, getHeight(), 2.f);
         g.setColour(MyColours::VIEW_DETAIL);
+        for(int i = 0; i < xValues.size(); i++){
+            int& x = xValues[i];
+            int& val = values[i];
+            if(val == 10 || val == 100 || val == 1000 || val == 10000){
+                g.setColour(MyColours::VIEW_DETAIL.brighter());
+                g.drawLine(x, yMargin, x, getHeight() - yMargin, 2.0f);
+                g.setColour(MyColours::VIEW_DETAIL);
+            }else{
+                g.drawLine(x, yMargin, x, getHeight() - yMargin, 1.25f);
+            }
+        }
 
-        //need to figure out how to draw a logarithmic grid
-        //drawLogGrid(g, 10.0f, 100000.0f, offset, logTo100000, 3);
+        
 
 
 
     }
+
+    void resized() override
+    {
+        yMargin = getHeight() * 0.1;
+        xMargin = getWidth() * 0.03;
+        xValues.clear();
+        for(int val : values){
+            //since values maps 1:1 with xValues index, we can still use our index logic to decide which ones to draw thicker
+            xValues.push_back((log10(val) * (getWidth() / 4.35)) - (getWidth() / 8));
+        }
+
+    }
+
+    private:
+    std::vector<int> values;
+    std::vector<int> xValues;
+    int yMargin;
+    int xMargin;
+        
 
     
 };

@@ -89,7 +89,8 @@ public:
     void resized() override
     {
         auto bounds = getLocalBounds();
-        visualBounds = bounds.removeFromTop(bounds.getHeight() * 0.8);
+        bounds.removeFromTop(getHeight() * 0.1);
+        visualBounds = bounds.removeFromTop(bounds.getHeight() * 0.6);
         labelSettingsBounds = bounds;
 
         phaserVisualComponent.setBounds(visualBounds);

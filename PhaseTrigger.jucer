@@ -25,6 +25,8 @@
         <FILE id="LPUz2t" name="LEDLight.h" compile="0" resource="0" file="Source/Components/LEDLight.h"/>
         <FILE id="aYeUlZ" name="MenuButtonComponent.h" compile="0" resource="0"
               file="Source/Components/MenuButtonComponent.h"/>
+        <FILE id="TjyUXg" name="MouseLockSlider.h" compile="0" resource="0"
+              file="Source/Components/MouseLockSlider.h"/>
       </GROUP>
       <GROUP id="{6ED3EAD9-1A15-70F6-ED97-9D93509AF081}" name="CoreComponents">
         <FILE id="rZ3gRB" name="OutputSettingsComponent.h" compile="0" resource="0"

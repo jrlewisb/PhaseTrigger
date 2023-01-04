@@ -22,6 +22,15 @@ const juce::Colour SELECTED_VIEW_TEXT = juce::Colour(0xfff3f4f8);
     
 }
 
+namespace MyFonts{
+const float FONT_MAX = 24.f;
+const float FONT_LARGE = 20.f;
+const float FONT_MED = 18.f;
+const float FONT_SMALL = 16.f;
+const float FONT_SMALLER = 14.f;
+const float FONT_SMALLEST = 12.f;
+}
+
 struct CustomLNF : juce::LookAndFeel_V4{
     CustomLNF() : typeface(juce::Typeface::createSystemTypefaceFor(spacegrotesk::SpaceGroteskMedium_ttf, spacegrotesk::SpaceGroteskMedium_ttfSize)){
       

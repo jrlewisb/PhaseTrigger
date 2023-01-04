@@ -5,8 +5,6 @@ class PhaserVisualComponent  : public juce::Component
 {
     //this class is essentially the visualisation of the phaser settings
     //the core visual of this class is a logarithmic representation of the audible frequency range
-    //we will draw a line of a different colour to represent each notch in the phaser
-    //the line will be drawn from the centre of the component to the edge of the component
 public:
     PhaserVisualComponent(){
         for(int i = 1; i < 5; i++){

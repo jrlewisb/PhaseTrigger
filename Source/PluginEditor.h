@@ -62,6 +62,9 @@ private:
     //Stateful variables
     juce::Component* currentView;
 
+    //Attachments
+    juce::AudioProcessorValueTreeState::SliderAttachment notchesAttachment;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PhaseTriggerAudioProcessorEditor)
 };
 

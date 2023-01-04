@@ -10,9 +10,9 @@
 #include "./PluginEditor.h"
 
 //==============================================================================
-PhaseTriggerAudioProcessor::PhaseTriggerAudioProcessor()
+PhaseTriggerAudioProcessor::PhaseTriggerAudioProcessor() :
 #ifndef JucePlugin_PreferredChannelConfigurations
-     : AudioProcessor (BusesProperties()
+      AudioProcessor (BusesProperties()
                      #if ! JucePlugin_IsMidiEffect
                       #if ! JucePlugin_IsSynth
                        .withInput  ("Input",  juce::AudioChannelSet::stereo(), true)
@@ -21,6 +21,7 @@ PhaseTriggerAudioProcessor::PhaseTriggerAudioProcessor()
                      #endif
                        )
 #endif
+, apvts(*this, nullptr, "Parameters", createParameterLayout())
 {
 }
 
@@ -181,6 +182,19 @@ void PhaseTriggerAudioProcessor::setStateInformation (const void* data, int size
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
+}
+
+//custom
+juce::AudioProcessorValueTreeState::ParameterLayout PhaseTriggerAudioProcessor::createParameterLayout()
+{
+    juce::AudioProcessorValueTreeState::ParameterLayout layout;
+    //For the phaser view
+    //id, name, min, max, default, attributes = {} for int
+    layout.add(std::make_unique<juce::AudioParameterInt>(juce::ParameterID{"NOTCHES", 1}, "Notches", 1, 12, 4));
+
+    return layout;
+
+
 }
 
 //==============================================================================

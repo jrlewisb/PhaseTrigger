@@ -1,10 +1,10 @@
 <h1> PhaseTrigger </h1>
 
-PhaseTrigger is (eventually) going to be a simple audio plugin designed to give sound designers full control over phasing effects.
+<h5>PhaseTrigger is <sub>eventually going to be</sub> a simple audio plugin designed to help sound designers employ fine-tuned phasing effects. </h5>
 This will be achieved via 
-- Midi Triggered Envelopes
-- Customisable envelopes for individual phaser notches, or linked
-- Multiple notches
+- Midi/Gate Triggered Envelopes
+- Linked, or Independent centers and envelopes for individual phaser notches
+- 1 - 12 Notches available to control.
 
 Created using JUCE Framework, this is currently a non-profit educational project for my own learning and enjoyment.
 
@@ -13,9 +13,14 @@ Created using JUCE Framework, this is currently a non-profit educational project
 
 ![Progress v2](./Images/Progress2.png)
 
-Thanks to some help from [Matthjis Hollemans](https://leanpub.com/u/machinethink) I was able to get the visualisation for the logspaced frequency spectrum onto the plugin.
-I also made some custom components, and connected them to the AudioProcessorValueTreeState so that they could interact, and they do.
-Next step is making a control using the component type that I created for notch, this time called "center". I will substitute the value of center for the 10khz magic number present in the phaser visualisation so that adjusting that also reflects visually.
+Thanks to some help from [Matthjis Hollemans](https://leanpub.com/u/machinethink) I was able to get the visualisation for the logspaced frequency spectrum onto the plugin!
+
+I also made some custom components, the MouseLockSlider (& its MouseLockSliderWrapper for when we want to add a label to the control). This component is intended to mirror ableton live's value adjustment, where upon clicking your mouse is captured and you can drag up and down to adjust the value.
+
+Using these components, I made the "Notches" control, which indicates how many allpass notches should be present in the phaser. I also linked this control to its corresponding AudioProcessorParameter to ensure that the visualisation and the processor reflect the same values.
+
+Visually, everything is working how I wanted it to. The next step will be a similar process of declaring another MouseLockSlider + Wrapper to handle the "Center" parameter. I also need to create the corresponding AudioProcessorParameter, and finally replace the "Magic Number" I am currently calculating the phaser notches around (10khz).
+
 
 <h4> 30 Dec - 4 Jan </h4>
 So far I have focused mainly on the GUI, and established a solid base to continue building the project upon. Components are generally quite independent allowing me to intuitively navigate to parts of my application.

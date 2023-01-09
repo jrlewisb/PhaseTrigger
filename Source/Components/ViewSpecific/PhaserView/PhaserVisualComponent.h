@@ -75,6 +75,12 @@ struct PhaserVisualComponent  : juce::Component,
         
     }
 
+    int getFrequencyControlValue()
+    {
+        int f = apvts.getRawParameterValue("FREQUENCY")->load();
+        return f;
+    }
+
     void calculateNotchXValues(int numNotches)
     /*
         This function calculates the x values needed to draw each notch.
@@ -82,9 +88,10 @@ struct PhaserVisualComponent  : juce::Component,
         where n is the number of notches and i is the index of the notch
      */
      {
+        int freq = getFrequencyControlValue();
         notchXValues.clear();
         for(int i = 0; i < numNotches; i++){
-            int x = (log10((10000/numNotches) + (i * 20000 / numNotches)) * (getWidth() / 4.35)) - (getWidth() / 8);
+            int x = (log10((freq/numNotches) + (i * 2*freq / numNotches)) * (getWidth() / 4.35)) - (getWidth() / 8);
             notchXValues.push_back(x);
         }
     }

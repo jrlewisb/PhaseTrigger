@@ -191,6 +191,8 @@ juce::AudioProcessorValueTreeState::ParameterLayout PhaseTriggerAudioProcessor::
     //For the phaser view
     //id, name, min, max, default, attributes = {} for int
     layout.add(std::make_unique<juce::AudioParameterInt>(juce::ParameterID{"NOTCHES", 1}, "Notches", 1, 12, 4));
+    layout.add(std::make_unique<juce::AudioParameterFloat>(juce::ParameterID{"FREQUENCY", 2}, "Frequency", juce::NormalisableRange<float>(20.0f, 20000.0f, 1.0f, 0.25f), 1000.0f));
+    layout.add(std::make_unique<juce::AudioParameterFloat>(juce::ParameterID{"DEPTH", 3}, "Depth", juce::NormalisableRange<float>(-6.f, 6.f, 0.001f, 1.f, true), 1.f));
 
     return layout;
 

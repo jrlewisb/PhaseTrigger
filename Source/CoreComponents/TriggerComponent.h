@@ -1,6 +1,6 @@
 #pragma once
 #include <JuceHeader.h>
-#include "../Components/LEDLight.h"
+#include "../Components/Reusable/LEDLight.h"
 
 struct TriggerComponent : juce::Component
 /*

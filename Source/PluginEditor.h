@@ -4,8 +4,8 @@
 #include "./PluginProcessor.h"
 #include "./CustomLNF.h"
 //Include Views
-#include "./Views/EnvelopeView.h"
-#include "./Views/PhaserView.h"
+#include "./CoreComponents/Views/EnvelopeView.h"
+#include "./CoreComponents/Views/PhaserView.h"
 //Include Core (Some arrangement of many, laid out) Components
 #include "./CoreComponents/TriggerComponent.h"
 #include "./CoreComponents/TopMenuBar.h"

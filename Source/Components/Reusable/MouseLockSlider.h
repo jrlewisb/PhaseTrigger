@@ -7,10 +7,22 @@ struct MouseLockSlider : public juce::Slider
         ^ font height (ie; 16px)
         ^ control font height (ie; 14px)
         | empty space (bounds - (font height + control font height)
+
+    TODO: Handle range, skew etc in a similar manner to how juce::Slider does it, so we can use the same methods to set the range, skew etc
+    Idea: +- some arbitrary number of pixels to the mouse position, apply skew along this range and if the mouse is outside of this range just apply the max skew
  */
 {
     MouseLockSlider()
     {
+        setSliderStyle(juce::Slider::SliderStyle::RotaryVerticalDrag);
+        setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, false, 0, 0);
+        sensitivity = 20;
+    }
+
+    MouseLockSlider(int sensitivityToSet){
+        setSliderStyle(juce::Slider::SliderStyle::RotaryVerticalDrag);
+        setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, false, 0, 0);
+        sensitivity = sensitivityToSet;
     }
     
     void paint(juce::Graphics& g) override {
@@ -61,7 +73,7 @@ struct MouseLockSlider : public juce::Slider
     private:
     juce::Point<float> capturedMousePosition;
     float lastReadMouseY;
-    int sensitivity = 20;
+    int sensitivity;
 
 
 };

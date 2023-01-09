@@ -4,9 +4,7 @@
 
 #include <JuceHeader.h>
 
-//==============================================================================
-/*
-*/
+
 class EnvelopeView  : public juce::Component
 {
 public:
@@ -38,6 +36,10 @@ public:
             
         notchSelectDropdownBounds = bounds.removeFromTop(totalHeight * 0.2);
         envelopeCustomizationBounds = bounds;
+    }
+
+    void makeASDREnvelope(){
+        
     }
 
 

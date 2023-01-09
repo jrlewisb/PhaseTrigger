@@ -1,7 +1,7 @@
 
 #pragma once
 #include <JuceHeader.h>
-#include "../Components/MenuButtonComponent.h"
+#include "../Components/Reusable/MenuButtonComponent.h"
 
 /*
     This file contains the TopMenuBar, as well as definitions of components that are useful in improving the readability of the TopMenuBar component,

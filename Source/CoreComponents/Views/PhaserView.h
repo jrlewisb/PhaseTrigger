@@ -11,8 +11,10 @@
 #pragma once
 
 #include <JuceHeader.h>
-#include "../CoreComponents/PhaserVisualComponent.h"
-#include "../Components/MouseLockSlider.h"
+#include "../../Components/ViewSpecific/PhaserView/PhaserVisualComponent.h"
+
+#include "../../Components/ViewSpecific/PhaserView/PhaserVisualComponent.h"
+#include "../../Components/Reusable/MouseLockSlider.h"
 
 
 struct MouseLockSliderWrapper : public juce::Component{ //internal component for displaying titles above the mouselocksliders, will refactor to its own .h file if needed
@@ -49,12 +51,22 @@ private:
 
 class PhaserView  : public juce::Component
 {
+    //looking at the initializer list, private members and addAndMakeVisible, in the future lets look into condensing this logic into a class so we can
+    //avoid lots of similar code when performing this process
 public:
-    PhaserView(juce::AudioProcessorValueTreeState& apvts) : notchesMouseLockSliderWrapper("Notches", notchesMouseLockSlider) , notchesAttachment(apvts, "NOTCHES", notchesMouseLockSlider), phaserVisualComponent(apvts)
+    PhaserView(juce::AudioProcessorValueTreeState& apvts) : notchesMouseLockSliderWrapper("Notches", notchesMouseLockSlider) , 
+                                                            frequencyMouseLockSliderWrapper("Frequency", frequencyMouseLockSlider),
+                                                            depthMouseLockSliderWrapper("Depth", depthMouseLockSlider),
+                                                            notchesAttachment(apvts, "NOTCHES", notchesMouseLockSlider), 
+                                                            frequencyAttachment(apvts, "FREQUENCY", frequencyMouseLockSlider),
+                                                            depthAttachment(apvts, "DEPTH", depthMouseLockSlider),
+                                                            phaserVisualComponent(apvts)
     {
         
         addAndMakeVisible(phaserVisualComponent);
         addAndMakeVisible(notchesMouseLockSliderWrapper);
+        addAndMakeVisible(frequencyMouseLockSliderWrapper);
+        addAndMakeVisible(depthMouseLockSliderWrapper);
         
 
     }
@@ -93,6 +105,8 @@ public:
         phaserVisualComponent.setBounds(visualBounds);
 
         notchesMouseLockSliderWrapper.setBounds(notchesBounds);
+        frequencyMouseLockSliderWrapper.setBounds(controlBounds.removeFromLeft(controlWidth));
+        depthMouseLockSliderWrapper.setBounds(controlBounds.removeFromLeft(controlWidth));
     }
 
     juce::Slider& getNotchesSlider(){
@@ -106,8 +120,18 @@ private:
     juce::Rectangle<int> controlBounds;
     
     MouseLockSlider notchesMouseLockSlider;
+    MouseLockSlider frequencyMouseLockSlider;
+    MouseLockSlider depthMouseLockSlider;
+    
+
     MouseLockSliderWrapper notchesMouseLockSliderWrapper;
+    MouseLockSliderWrapper frequencyMouseLockSliderWrapper;
+    MouseLockSliderWrapper depthMouseLockSliderWrapper;
+
+
     juce::AudioProcessorValueTreeState::SliderAttachment notchesAttachment;
+    juce::AudioProcessorValueTreeState::SliderAttachment frequencyAttachment;
+    juce::AudioProcessorValueTreeState::SliderAttachment depthAttachment;
 
     PhaserVisualComponent phaserVisualComponent;
     

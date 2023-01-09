@@ -4,6 +4,34 @@
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="R5RSB4" name="PhaseTrigger">
     <GROUP id="{2A5C9D31-8B8E-8A62-7F7A-C60DEA83ADCB}" name="Source">
+      <GROUP id="{896E4B91-5A45-A69E-1B0A-2CA1DB9069CA}" name="Components">
+        <GROUP id="{A41FA516-E930-FF42-3F3A-A2841DBED767}" name="CompositeReusable"/>
+        <GROUP id="{AD71F247-C8C3-FDBF-55D4-489A33829E2E}" name="Reusable">
+          <FILE id="iw4CpD" name="LEDLight.h" compile="0" resource="0" file="Source/Components/Reusable/LEDLight.h"/>
+          <FILE id="NAM3xo" name="MenuButtonComponent.h" compile="0" resource="0"
+                file="Source/Components/Reusable/MenuButtonComponent.h"/>
+          <FILE id="LU4WJK" name="MouseLockSlider.h" compile="0" resource="0"
+                file="Source/Components/Reusable/MouseLockSlider.h"/>
+        </GROUP>
+        <GROUP id="{A44C3636-252C-3682-F605-7445787FDD0E}" name="ViewSpecific">
+          <GROUP id="{3B99CF91-FFAA-DF11-1173-D8D1B048B882}" name="EnvelopeView"/>
+          <GROUP id="{659AB324-A6F4-18F1-2D89-4847B6D678E5}" name="PhaserView">
+            <FILE id="acaYFi" name="PhaserVisualComponent.h" compile="0" resource="0"
+                  file="Source/Components/ViewSpecific/PhaserView/PhaserVisualComponent.h"/>
+          </GROUP>
+        </GROUP>
+      </GROUP>
+      <GROUP id="{6284E3AD-781A-800E-CDCF-F29A7CF2CFA7}" name="CoreComponents">
+        <GROUP id="{5F6C6228-3D82-4DCA-2C67-6AC72F7AF264}" name="Views">
+          <FILE id="Yw8diu" name="EnvelopeView.h" compile="0" resource="0" file="Source/CoreComponents/Views/EnvelopeView.h"/>
+          <FILE id="JQcVuW" name="PhaserView.h" compile="0" resource="0" file="Source/CoreComponents/Views/PhaserView.h"/>
+        </GROUP>
+        <FILE id="JhIJPQ" name="OutputSettingsComponent.h" compile="0" resource="0"
+              file="Source/CoreComponents/OutputSettingsComponent.h"/>
+        <FILE id="WDEUD3" name="TopMenuBar.h" compile="0" resource="0" file="Source/CoreComponents/TopMenuBar.h"/>
+        <FILE id="Aky9HX" name="TriggerComponent.h" compile="0" resource="0"
+              file="Source/CoreComponents/TriggerComponent.h"/>
+      </GROUP>
       <GROUP id="{3A77DD88-5577-FFF7-3CBF-97085C1BCB84}" name="BinaryBuilderFonts">
         <FILE id="gKliWn" name="spacegrotesk.cpp" compile="1" resource="0"
               file="Source/BinaryBuilderFonts/spacegrotesk.cpp"/>
@@ -16,26 +44,6 @@
           <FILE id="Y0e5C8" name="SpaceGrotesk-Regular.ttf" compile="0" resource="1"
                 file="Source/Assets/Fonts/SpaceGrotesk-Regular.ttf"/>
         </GROUP>
-      </GROUP>
-      <GROUP id="{8A66EF9D-DF3D-987C-F605-661D642527CA}" name="Views">
-        <FILE id="CurGoo" name="EnvelopeView.h" compile="0" resource="0" file="Source/Views/EnvelopeView.h"/>
-        <FILE id="t3iv9c" name="PhaserView.h" compile="0" resource="0" file="Source/Views/PhaserView.h"/>
-      </GROUP>
-      <GROUP id="{896E4B91-5A45-A69E-1B0A-2CA1DB9069CA}" name="Components">
-        <FILE id="LPUz2t" name="LEDLight.h" compile="0" resource="0" file="Source/Components/LEDLight.h"/>
-        <FILE id="aYeUlZ" name="MenuButtonComponent.h" compile="0" resource="0"
-              file="Source/Components/MenuButtonComponent.h"/>
-        <FILE id="TjyUXg" name="MouseLockSlider.h" compile="0" resource="0"
-              file="Source/Components/MouseLockSlider.h"/>
-      </GROUP>
-      <GROUP id="{6ED3EAD9-1A15-70F6-ED97-9D93509AF081}" name="CoreComponents">
-        <FILE id="rZ3gRB" name="OutputSettingsComponent.h" compile="0" resource="0"
-              file="Source/CoreComponents/OutputSettingsComponent.h"/>
-        <FILE id="L5l6mO" name="PhaserVisualComponent.h" compile="0" resource="0"
-              file="Source/CoreComponents/PhaserVisualComponent.h"/>
-        <FILE id="aJW3hQ" name="TopMenuBar.h" compile="0" resource="0" file="Source/CoreComponents/TopMenuBar.h"/>
-        <FILE id="OqhmM1" name="TriggerComponent.h" compile="0" resource="0"
-              file="Source/CoreComponents/TriggerComponent.h"/>
       </GROUP>
       <FILE id="xdffbN" name="CustomLNF.h" compile="0" resource="0" file="Source/CustomLNF.h"/>
       <FILE id="ALzjMP" name="PluginProcessor.cpp" compile="1" resource="0"

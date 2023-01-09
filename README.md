@@ -10,6 +10,11 @@ This will be achieved via:
 Created using JUCE Framework, this is currently a non-profit educational project for my own learning and enjoyment.
 
 <h3> Progress </h3>
+
+<h4> 5 Jan - 9 Jan </h4>
+Not much progress happening as I have been on holidays for my birthday, but I decided I needed somewhere to organise the development of the project, hence [this trello board](https://trello.com/w/phasetrigger). This should help me to record and work through the many considerations of the project. If you are reading this and want to be added to the workspace, please reach out to me by email (jrlewis.b@gmail.com) and I will add you to the project :)
+
+
 <h4> 4 Jan - 5 Jan </h4>
 
 ![Progress v2](./Images/Progress2.png)
@@ -21,9 +26,6 @@ I also made some custom components, the MouseLockSlider (& its MouseLockSliderWr
 Using these components, I made the "Notches" control, which indicates how many allpass notches should be present in the phaser. I also linked this control to its corresponding AudioProcessorParameter to ensure that the visualisation and the processor reflect the same values.
 
 Visually, everything is working how I wanted it to. The next step will be a similar process of declaring another MouseLockSlider + Wrapper to handle the "Center" parameter. I also need to create the corresponding AudioProcessorParameter, and finally replace the "Magic Number" I am currently calculating the phaser notches around (10khz).
-
-<h4> 5 Jan - 9 Jan </h4>
-Not much progress happening as I have been on holidays for my birthday, but I decided I needed somewhere to organise the development of the project, hence [this trello board](https://trello.com/w/phasetrigger). This should help me to record and work through the many considerations of the project. If you are reading this and want to be added to the workspace, please reach out to me by email (jrlewis.b@gmail.com) and I will add you to the project :)
 
 <h4> 30 Dec - 4 Jan </h4>
 So far I have focused mainly on the GUI, and established a solid base to continue building the project upon. Components are generally quite independent allowing me to intuitively navigate to parts of my application.
